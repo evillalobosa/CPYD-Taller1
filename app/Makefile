@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -g3 -Wall -std=c++14
+CXXFLAGS = -g3 -Wall -std=c++11
 MKDIR = mkdir -p
 
 LIBS = -lm
@@ -14,7 +14,7 @@ all: clean main.o
 	$(CXX) $(CXXFLAGS) -o dist/programa \
 	build/main.o \
 	$(LIBS)
-	rm -fr build
+	rm -rf build
 
 clean:
 	rm -fr *.o a.out core programa dist build

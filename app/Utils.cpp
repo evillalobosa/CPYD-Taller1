@@ -49,14 +49,17 @@ Monomio Utils::str2Monomio(std::string texto) {
         std::string str = texto;
         std::size_t pos = str.find("x");
 
-        //        std::cout << "Texto: " << texto << " Pos: " << pos << std::endl;
         if (pos != std::string::npos) {
             /// Coeficiente
             std::string coefStr = str.substr(0, pos);
             if (coefStr.empty()) {
                 mono.SetCoeficiente(1);
             } else {
-                mono.SetCoeficiente(atof(coefStr.c_str()));
+                if (coefStr == "-") {
+                    mono.SetCoeficiente(-1);
+                } else{
+                    mono.SetCoeficiente(atof(coefStr.c_str()));
+                }
             }
 
             /// Grado
@@ -111,7 +114,7 @@ double Utils::evaluar(std::vector<Monomio> polinomio, double valor) {
 std::vector<Monomio> Utils::derivar(std::vector<Monomio> polinomio) {
     std::vector<Monomio> derivada;
 
-    std::cout << "Derivada: ";
+    std::cout << "-> Derivada: ";
     std::vector<Monomio>::size_type i;
     for (i = 0; i < polinomio.size(); i++) {
         Monomio monomio = polinomio[i];

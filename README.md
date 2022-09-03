@@ -23,6 +23,14 @@
 
 <br>
 
+## 👉 Demostración
+| Terminal | Wolfram Alpha |
+| -------- | ------------- |
+| ![term1](https://i.imgur.com/gH0qbWD.png) | ![wolf1](https://i.imgur.com/uIrJeGX.png) |
+| ![term1](https://i.imgur.com/Ku4Cnhn.png) | ![wolf2](https://i.imgur.com/27qMUBY.png) |
+
+<br>
+
 ## 👉 Integrantes
 - Julio Aceituno Zalaya (jaceituno@utem.cl)
 - Enrique Villalobos (evillalobos@utem.cl)

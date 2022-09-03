@@ -73,7 +73,6 @@ Monomio Utils::str2Monomio(std::string texto) {
             mono.SetGrado(0);
         }
     }
-
     return mono;
 }
 
@@ -91,22 +90,72 @@ std::vector<Monomio> Utils::convertir(std::string polinomioStr) {
             Monomio monomio = str2Monomio(valor);
             polinomio.push_back(monomio);
         }
-
         listado = polinomio;
-
-
     }
     return listado;
 }
 
-double Utils::evaluar(std::vector<Monomio> polinomio, double valor) {
-    double resultado;
+/**
+ * Funcion para calcular las raices de una funcion
+ * aplicando el metodo de Newton-Raphson
+ * @param polinomio: Arreglo de Monomios
+ * @return El valor de la solucion
+ */
+double Utils::evaluar(std::vector<Monomio> polinomio) {
+    // 1. Calculo de la derivada de la funcion original (del polinomio)
+    std::vector<Monomio> derivada;
+
+    std::cout << "Derivada: ";
     std::vector<Monomio>::size_type i;
-    double suma = (double) 0;
     for (i = 0; i < polinomio.size(); i++) {
         Monomio monomio = polinomio[i];
-        suma += (monomio.GetCoeficiente() * pow(valor, monomio.GetGrado()));
+        Monomio derivadaMonomio;
+
+        derivadaMonomio.SetCoeficiente(monomio.GetGrado() * monomio.GetCoeficiente());
+        derivadaMonomio.SetGrado(monomio.GetGrado() - 1);
+
+        derivada.push_back(derivadaMonomio);
+        std::cout << derivadaMonomio.GetCoeficiente() << "x^" << derivadaMonomio.GetGrado() << " ";
     }
-    resultado = suma;
-    return resultado;
+    std::cout << std::endl;
+
+    // 2. Pivote = x0 (primera aproximacion)
+    double pivote = 1;
+    double error  = 0.01;
+    double xn     = pivote;
+    double xn_1   = 0.0;
+
+    // 3. Evaluacion del pivote en la funcion original
+    while (xn - xn_1 > error) {
+        double resultadoPolinomio;
+        std::vector<Monomio>::size_type k;
+        double sumaP = (double) 0;
+        for (k = 0; k < polinomio.size(); k++) {
+            Monomio monomioP = polinomio[k];
+            std::cout << "iteracion" << k << std::endl;
+            std::cout << "--> Coeficiente Polinomio:" << monomioP.GetCoeficiente() << std::endl;
+            std::cout << "--> Grado Polinomio:" << monomioP.GetGrado() << std::endl << std::endl;
+            sumaP += (monomioP.GetCoeficiente() * pow(pivote, monomioP.GetGrado()));
+        }
+        resultadoPolinomio = sumaP;
+        std::cout << "--> Resultado Polinomio: " << resultadoPolinomio << std::endl;
+
+        // 4. Evaluacion del pivote en la funcion derivada
+        double resultadoDerivada;
+        std::vector<Monomio>::size_type j;
+        double sumaD = (double) 0;
+        for (j = 0; j < derivada.size(); j++) {
+            Monomio monomio = derivada[j];
+            sumaD += (monomio.GetCoeficiente() * pow(pivote, monomio.GetGrado()));
+        }
+        resultadoDerivada = sumaD;
+        std::cout << "--> Resultado Derivada: " << resultadoDerivada << std::endl;
+
+        // 5. Calculo del nuevo punto (pivote): xn - f(Xn)/f'(Xn)
+        pivote = pivote - resultadoPolinomio/resultadoDerivada;
+    }
+
+    // 6. Itera desde el paso 3
+
+    return pivote;
 }

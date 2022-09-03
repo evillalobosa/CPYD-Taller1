@@ -6,9 +6,8 @@
 
 /**
  * Función que muestra los participantes del grupo
- * @param programa nombre del ejecutable
  */
-void participantes(std::string programa) {
+void participantes() {
 	std::cout << std::endl << "=== Taller 01: Integrantes ===";
 	std::cout << std::endl << "- Julio Aceituno Zalaya (jaceituno@utem.cl)";
 	std::cout << std::endl << "- Enrique Villalobos (evillalobos@utem.cl)";
@@ -23,15 +22,13 @@ void participantes(std::string programa) {
  * @return El código de salida del programa
  */
 int main(int argc, char** argv) {
-	if (argc == 3) {
+	if (argc == 2) {
 		// Procede a hacer el calculo si la cantidad de parametros es correcta
 		const std::string polinomio(argv[1]);
-		const double valor = std::atof(argv[2]);
-		std::cout << std::endl << "polinomio (cmd): " << polinomio << std::endl;
-		std::cout << "Valor: " << valor << std::endl;
-
-		std::cout << "polinomio (convertido): ";
+		std::cout << "Polinomio: ";
 		std::vector<Monomio> monomios = Utils::convertir(polinomio);
+
+		// Muestra el Polinomio ingresado
 		std::vector<Monomio>::size_type i = 0;
 		for (i = 0; i < monomios.size(); i++) {
 			Monomio monomio = monomios[i];
@@ -39,11 +36,12 @@ int main(int argc, char** argv) {
 		}
 		std::cout << std::endl;
 
-		double resultado = Utils::evaluar(monomios, valor);
+		// Calcula la solucion del polinomio
+		double resultado = Utils::evaluar(monomios);
 		std::cout << "Resultado: " << resultado << std::endl;
 	} else {
 		// Muestra los integrantes
-		participantes(argv[0]);
+		participantes();
 	}
 	return EXIT_SUCCESS;
 }

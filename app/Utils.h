@@ -49,7 +49,23 @@ std::vector<Monomio> convertir(std::string polinomioStr);
  * @param value Elemento a evaluar
  * @return el valor resultante
  */
-double evaluar(std::vector<Monomio> polinomio);
+double evaluar(std::vector<Monomio> polinomio, double valor);
+
+/**
+ *
+ * @param polinomio Arreglo de polinomios
+ * @return nuevo polinomio con monomios derivados
+ */
+std::vector<Monomio> derivar(std::vector<Monomio> polinomio);
+
+/**
+ * Funcion para calcular las raices de una funcion
+ * aplicando el metodo de Newton-Raphson
+ * @param polinomio Arreglo de Monomios
+ * @return el valor de la solucion
+ */
+double newthon_raphson(std::vector<Monomio> polinomio);
+
 } // namespace Utils
 
 #endif /* UTILS_H */

@@ -2,6 +2,7 @@
 *.d
 
 # Compiled Object files
+app/dist/programa
 *.slo
 *.lo
 *.o

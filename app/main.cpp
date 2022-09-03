@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
 		std::cout << std::endl;
 
 		// Calcula la solucion del polinomio
-		double resultado = Utils::evaluar(monomios);
+		double resultado = Utils::newthon_raphson(monomios);
 		std::cout << "Resultado: " << resultado << std::endl;
 	} else {
 		// Muestra los integrantes

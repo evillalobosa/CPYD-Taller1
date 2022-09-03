@@ -32,6 +32,6 @@
 <br>
 
 ## 👉 Integrantes
-- Julio Aceituno Zalaya (jaceituno@utem.cl)
+- Julio Aceituno Zelaya (jaceituno@utem.cl)
 - Enrique Villalobos (evillalobos@utem.cl)
 - Oliver Chacón Álvarez (oliver.chacona@utem.cl)
